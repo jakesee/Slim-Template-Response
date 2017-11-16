@@ -55,9 +55,9 @@ In unit testing you can now also test the results directly by examining the data
 	}
 
 ## Usage
-This addon consist of a Response class (which is extended from the Slim Response class) and a Template class. Simply inject the Response class into the dependency container so that Slim App will use our extended Response class.
+This addon consists of a Response class (which is extended from the Slim Response class) and a Template class. Simply inject the Response class into the dependency container so that Slim App will use our extended Response class.
 
-	$app = new \Slim\App(); // default Slim Response is initialize by this constructor
+	$app = new \Slim\App(); // default Slim Response is initialized by this constructor
 	$container = $app->getContainer();
 
 	// We just replace the Response object by injecting our extended Response into the container
@@ -83,4 +83,4 @@ This addon consist of a Response class (which is extended from the Slim Response
 The Template class uses plain PHP for templating and does not have advance features like Twig or Blade, but it is possible to use your own Template class as long as your Template class implements the TemplateInterface.
 
 ### Compatibility
-This works with Slim Framwork 3 at this time of writing. There is a Slim Framework 4 upcoming and I have not tested against the newer versions.
+This works with Slim Framework 3 at this time of writing. There is a Slim Framework 4 upcoming and I have not tested against the newer versions.
