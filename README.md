@@ -41,7 +41,7 @@ As a result, you can modify the template variables in any middleware after the c
 ### Unit Testing
 In unit testing you can now also test the results directly by examining the data variables
 
-	function testGetUserProfile()
+	function testDisplayTotal()
 	{
 		// setup ...
 
