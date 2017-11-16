@@ -8,7 +8,7 @@ interface TemplateInterface
 	* 
 	* @return string
 	*/
-	public function toString() : string
+	public function toString() : string;
 
 	/**
 	* Prepare the template with the template data to be rendered

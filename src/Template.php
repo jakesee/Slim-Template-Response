@@ -6,7 +6,7 @@ class Template implements TemplateInterface
 	protected $container;
 	protected $templatePath;
 	protected $templateFile;
-	protected $data;
+	public $data;
 
 	public function __construct($container, string $templatePath)
 	{
@@ -20,7 +20,7 @@ class Template implements TemplateInterface
 			return $this->container[$propertyName];
 	}
 
-	public function prepare($templateFile, $data)
+	public function prepare(string $templateFile, array $data)
 	{
 		$this->templateFile = $templateFile;
 		$this->data = $data;
@@ -33,7 +33,7 @@ class Template implements TemplateInterface
 		echo $this->buffer($templateFile);
 	}
 
-	public function toString()
+	public function toString() : string
 	{
 		return $this->buffer($this->templateFile);
 	}
