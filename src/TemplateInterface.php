@@ -8,12 +8,12 @@ interface TemplateInterface
 	* 
 	* @return string
 	*/
-	public function toString() : string;
+	public function toString();
 
 	/**
 	* Prepare the template with the template data to be rendered
 	* 
 	* @return void
 	*/
-	public function prepare(string $templateFile, array $data);
+	public function prepare($templateFile, array $data);
 }
