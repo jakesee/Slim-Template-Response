@@ -28,7 +28,7 @@ class Template implements TemplateInterface
 		return $this;
 	}
 
-	protected function include($templateFile)
+	protected function extend($templateFile)
 	{
 		echo $this->buffer($templateFile);
 	}
