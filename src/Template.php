@@ -33,7 +33,7 @@ class Template implements TemplateInterface
 		echo $this->buffer($templateFile);
 	}
 
-	public function toString() : string
+	public function toString()
 	{
 		return $this->buffer($this->templateFile);
 	}
