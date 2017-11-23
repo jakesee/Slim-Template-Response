@@ -20,6 +20,8 @@ class Response extends SlimResponse
 	public function withTemplate($templateFile, array $data)
 	{
 		$this->template->prepare($templateFile, $data);
+
+		return $this;
 	}
 
 	public function render()
@@ -32,6 +34,11 @@ class Response extends SlimResponse
 	public function getTemplate()
 	{
 		return $this->template;
+	}
+
+	public function getJson()
+	{
+		return json_decode((string) $this->response->getBody(), true);
 	}
 }
 
