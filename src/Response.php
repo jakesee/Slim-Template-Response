@@ -41,6 +41,3 @@ class Response extends SlimResponse
 		return json_decode((string) $this->response->getBody(), true);
 	}
 }
-
-
-
