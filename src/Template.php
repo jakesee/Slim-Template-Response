@@ -1,36 +1,24 @@
 <?php
 namespace Braincase\Slim;
 
-class Template implements TemplateInterface
+class Template
 {
-	protected $container;
-	protected $templatePath;
-	protected $templateFile;
+	private $templatePath;
+	private $templateFile;
+	protected $session;
 	public $data;
 
-	public function __construct($container, $templatePath)
+	public function __construct($templateFile, $data, $templatePath, $session)
 	{
-		$this->container = $container;
-		$this->templatePath = $templatePath;
-	}
+		$this->data = [
+			'result' => 0,
+			'errors' => [],
+		];
 
-	public function __get($propertyName)
-	{
-		if(isset($this->container[$propertyName]))
-			return $this->container[$propertyName];
-	}
-
-	public function prepare($templateFile, array $data)
-	{
 		$this->templateFile = $templateFile;
-		$this->data = $data;
-
-		return $this;
-	}
-
-	protected function extend($templateFile)
-	{
-		echo $this->buffer($templateFile);
+		$this->data = array_merge($this->data, $data);
+		$this->templatePath = $templatePath;
+		$this->session = $session;
 	}
 
 	public function toString()
@@ -41,6 +29,18 @@ class Template implements TemplateInterface
 	public function src($url)
 	{
 		return $this->request->getUri()->getBaseUrl() . '/' . $url;
+	}
+
+	protected function extend($templateFile)
+	{
+		echo $this->buffer($this->getTemplateFile($templateFile));
+	}
+
+	protected function viewData()
+	{
+		echo '<pre>';
+		print_r($this->data);
+		echo '</pre>';
 	}
 
 	private function buffer($templateFile)
@@ -57,12 +57,5 @@ class Template implements TemplateInterface
 	private function getTemplateFile($templateFile)
 	{
 		return $this->templatePath . $templateFile;
-	}
-
-	protected function viewData()
-	{
-		echo '<pre>';
-		print_r($this->data);
-		echo '</pre>';
 	}
 }

@@ -7,21 +7,15 @@ use Slim\Interfaces\Http\HeadersInterface;
 
 class Response extends SlimResponse
 {
-	protected $template;
+	use TemplateEngineTrait;
 
 	// public function __construct($status = 200, HeadersInterface $headers = null, StreamInterface $body = null)
-	public function __construct(TemplateInterface $template, $status = 200, HeadersInterface $headers = null, StreamInterface $body = null)
+	public function __construct($container, $templatePath)
 	{
-		parent::__construct($status, $headers, $body);
+		$headers = new \Slim\Http\Headers(['Content-Type' => 'text/html; charset=UTF-8']);
+		parent::__construct(200, $headers);
 
-		$this->template = $template;
-	}
-
-	public function withTemplate($templateFile, array $data)
-	{
-		$this->template->prepare($templateFile, $data);
-
-		return $this;
+		$this->initTemplateEngine($container, $templatePath);
 	}
 
 	public function render()
@@ -31,13 +25,10 @@ class Response extends SlimResponse
 		return $this;
 	}
 
-	public function getTemplate()
-	{
-		return $this->template;
-	}
-
 	public function getJson()
 	{
 		return json_decode((string) $this->response->getBody(), true);
 	}
 }
+
+
